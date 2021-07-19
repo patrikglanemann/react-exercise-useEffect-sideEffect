@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 function Counter() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState("0");
   // Your code below
 
   function handleDecrement() {
@@ -11,6 +11,18 @@ function Counter() {
   function handleIncrement() {
     setCount(count + 1);
   }
+
+  useEffect(() => {
+    let counterValue = Number(localStorage.getItem("counter"));
+    if (counterValue === null) {
+      counterValue = [];
+    }
+    setCount(counterValue);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("counter", count);
+  }, [count]);
 
   return (
     <div>
