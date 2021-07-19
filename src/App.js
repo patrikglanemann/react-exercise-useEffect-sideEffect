@@ -9,7 +9,9 @@ function App() {
     window.addEventListener("resize", () => {
       setWindowWidth(window.innerWidth);
     });
-    return () => window.removeEventListener("resize");
+    return () => {
+      window.removeEventListener("resize");
+    };
   }, []);
 
   return (
