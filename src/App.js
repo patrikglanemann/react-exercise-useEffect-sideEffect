@@ -10,7 +10,9 @@ function App() {
       setWindowWidth(window.innerWidth);
     });
     return () => {
-      window.removeEventListener("resize");
+      window.removeEventListener("resize", () => {
+        setWindowWidth(window.innerHeight);
+      });
     };
   }, []);
 
