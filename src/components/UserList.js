@@ -1,30 +1,25 @@
 import User from "./User.js";
 import { useEffect, useState } from "react";
 
-function UserList() {
+function UserList({ numberOfUsers, genderFilter }) {
   const [users, setUsers] = useState([]);
 
-  const url =
-    "https://randomuser.me/api/?inc=email,gender,name,picture&results=10";
   useEffect(() => {
+    const url = `https://randomuser.me/api/?inc=email,gender,name,picture&gender=${genderFilter}&results=${numberOfUsers}`;
     fetch(url)
       .then((resp) => resp.json())
       .then((data) => {
-        const userList = data.results;
-        setUsers(userList);
+        setUsers(data.results);
       });
-  }, []);
+  }, [numberOfUsers, genderFilter]);
 
-  function renderUserList() {
-    const newUserList = users.map((user) => {
-      return <User key={Date.now()} userData={user} />;
-    });
-    return newUserList;
-  }
+  const newUserList = users.map((user) => {
+    return <User key={user.email} userData={user} />;
+  });
 
   return (
     <main>
-      <ul>{renderUserList()}</ul>
+      <ul>{newUserList}</ul>
     </main>
   );
 }

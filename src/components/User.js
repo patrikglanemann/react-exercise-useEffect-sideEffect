@@ -1,16 +1,22 @@
 import "./User.css";
 
-function User({ users }) {
+function User({ userData }) {
   return (
     <>
-      {users.map((user) => (
-        <li
-          key={Date.now()}
-          className={`Userlist__item ${user.gender}`}
-        >{`${user.name.title}: ${user.name.first} ${user.name.last}`}</li>
-      ))}
+      <li className={`Userlist__item Item--${userData.gender}`}>
+        <img src={userData.picture.thumbnail} alt={`${userData.name.first}`} />
+        {`${userData.name.title}: ${userData.name.first} ${userData.name.last}`}
+      </li>
     </>
   );
 }
-
 export default User;
+
+/*
+return (
+    <>
+      {userData.map((user) => {
+        (userData && <li key={userData.email} className={`Userlist__item ${user.gender}`}
+        >{`${user.name.title}: ${user.name.first} ${user.name.last}`}</li>))};
+    </>
+  );*/

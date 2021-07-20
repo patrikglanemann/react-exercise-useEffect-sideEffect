@@ -1,3 +1,7 @@
-li {
-  background-color: aquamarine;
+.Item--female {
+  background-color: rgb(173, 121, 199);
+}
+
+.Item--male {
+  background-color: rgb(121, 124, 199);
 }
